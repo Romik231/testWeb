@@ -1,7 +1,7 @@
 <?php
 namespace controllers;
 
-abstract class C_Controller
+abstract class Controller
 {
 
 	protected abstract function render();
@@ -31,11 +31,6 @@ abstract class C_Controller
 	protected function Template($fileName, $vars = [])
 	{
         extract($vars);
-//		foreach ($vars as $k => $v)
-//		{
-//			$$k = $v;
-//		}
-
 
 		ob_start();
 		include '../views/'.$fileName.'.php';
@@ -44,6 +39,6 @@ abstract class C_Controller
 	
 
 	public function __call($name, $params){
-        die('fvdsz');
+        die('Запрашиваемая страница не найдена');
 	}
 }

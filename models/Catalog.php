@@ -4,7 +4,7 @@
 namespace models;
 
 use models\Db;
-require 'Db.php';
+
 
 class Catalog extends Db
 {

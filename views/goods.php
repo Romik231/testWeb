@@ -24,3 +24,4 @@
 <?php endforeach; ?>
 
 <a href="index.php">Вернуться к списку категорий товаров</a>
+
