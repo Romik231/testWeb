@@ -1,15 +1,17 @@
+<?php $url = explode('/',$_SERVER['REQUEST_URI'])?>
+<?php $admin = explode('?',$url[2])?>
 <h3>Категории товаров</h3>
 <!--Вывод категорий товаров-->
 <div class="wrap">
     <div class="category">
         <?php foreach ($category as $key => $value): ?>
             <ul>
-                <li><a href="index.php?c=page&act=goods&cat_id=<?= $value['id'] ?>"><?= $value['title'] ?></a></li>
+                <li><a href="?c=page&act=goods&cat_id=<?= $value['id'] ?>"><?= $value['title'] ?></a></li>
             </ul>
         <?php endforeach; ?>
     </div>
 
-    <?php if ($_GET['c'] == 'admin'): ?>
+    <?php if ($admin[0] == 'admin.php'): ?>
         <div class="add-category">
             <h3>Добавить новую категорию</h3>
             <form id="form-category" action="" method="post">

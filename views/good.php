@@ -1,3 +1,5 @@
+<?php $url = explode('/',$_SERVER['REQUEST_URI'])?>
+<?php $admin = explode('?',$url[2])?>
 <?php foreach ($good as $key=>$value):?>
 <?php endforeach;?>
 
@@ -19,4 +21,4 @@
 <?php endforeach;?>
 </div>
 <a href="index.php">Вернуться к списку категорий товаров</a><br>
-<a href="index.php?c=page&act=goods&cat_id=<?=$value['id'] ?>">Вернуться к списку товаров</a>
+<a href="admin.php?c=page&act=goods&cat_id=<?=$value['id'] ?>">Вернуться к списку товаров</a>
