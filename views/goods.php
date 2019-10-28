@@ -1,8 +1,8 @@
 <?php $url = explode('/', $_SERVER['REQUEST_URI']) ?>
 <?php $admin = explode('?', $url[2]) ?>
 <!--Перебор массива для динамической подгрузки названия раздела-->
-<?php foreach ($goods as $key => $value): ?>
-<?php endforeach; ?>
+<?php //foreach ($goods as $key => $value): ?>
+<?php //endforeach; ?>
 <div class="wrap">
     <div>
         <h3><?= $value['name_category'] ?></h3>
