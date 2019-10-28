@@ -10,19 +10,19 @@ class Catalog extends Db
 {
     public function getGood()
     {
-        $id = htmlspecialchars($_GET['id']);
+        $id = (int)trim(strip_tags($_GET['id_good']));
 
         $params = [
             'id'=> $id,
         ];
 
-        $result = $this->rows('select * from goods ');
+        $result = $this->rows('select * from goods where id=:id ', $params);
         return $result;
     }
 
     public function getGoods()
     {
-        $id = htmlspecialchars($_GET['cat_id']);
+        $id = (int)trim(strip_tags($_GET['cat_id']));
         $params = [
             'category_id' => $id,
         ];
