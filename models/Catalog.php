@@ -13,10 +13,30 @@ class Catalog extends Db
         $id = htmlspecialchars($_GET['id']);
 
         $params = [
-            'id'=> $id];
-        $result = $this->rows('select * from cities where id=:id',$params);
+            'id'=> $id,
+        ];
+
+        $result = $this->rows('select * from goods ');
         return $result;
     }
+
+    public function getGoods()
+    {
+        $id = htmlspecialchars($_GET['cat_id']);
+        $params = [
+            'category_id' => $id,
+        ];
+        $result = $this->rows('select goods.*, 
+                                category.title 
+                                as name_category, category.id 
+                                as cat_id 
+                                from goods 
+                                left join category 
+                                on goods.category_id = category.id
+                                where category.id =:category_id;', $params);
+        return $result;
+    }
+
 
     public function getCategory()
     {
@@ -25,32 +45,7 @@ class Catalog extends Db
         return $result;
     }
 
-    public function addUser()
-    {
-        $name = trim(strip_tags($_POST['name']));
 
-        $age = ($_POST['age']);
-        $city = trim(strip_tags($_POST['city']));
-
-        if (strlen($name) > 30 or strlen($name) < 3) {
-            echo 'Имя должно содержать от 3 до 30 символов';
-        }
-        if ($age < 0) {
-            echo 'Возраст не может быть отрицательным';
-        }var_dump($_POST);
-        $params = [
-            'name' => $name,
-
-        ];
-
-        $result = $this->query('insert into users(name) values(:name)', $params);
-
-
-        var_dump($result);
-        return $result;
-
-
-    }
 
 
 }
