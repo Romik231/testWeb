@@ -1,12 +1,22 @@
-<?php $url = explode('/', $_SERVER['REQUEST_URI']) ?>
-<?php $admin = explode('?', $url[2]) ?>
+<?php
+$url = explode('/', $_SERVER['REQUEST_URI']);
+$admin = explode('?', $url[2]);
+?>
 <!--Перебор массива для динамической подгрузки названия раздела-->
-<?php //foreach ($goods as $key => $value): ?>
-<?php //endforeach; ?>
+<?php foreach ($goods as $key => $value): ?>
+<?php endforeach;
+?>
 <div class="wrap">
     <div>
+
         <h3><?= $value['name_category'] ?></h3>
         <!--Перебор вариантов для покупки, возможности или невозможности заказа-->
+        <div>
+            <span>Сортировать по наименованию:  <a href="?c=page&act=goods&cat_id=<?= $_GET['cat_id'] . '&desc=1' ?>">&#8593</a>
+              <a href="?c=page&act=goods&cat_id=<?= $_GET['cat_id'] . '&desc=0' ?>">&#8595</a>
+            </span>
+
+        </div>
         <?php foreach ($goods as $key => $value): ?>
             <?php if ($value['count_stock'] == 0 and $value['possibility_of_order'] == 1): ?>
                 <? $a = 'К сожалению товар закончился но вы можете заказать его' ?>
@@ -15,6 +25,7 @@
             <?php elseif ($value['count_stock'] !== 0): ?>
                 <? $a = 'Купить' ?>
             <?php endif; ?>
+
             <!--Список товаров-->
             <ul>
                 <li>
@@ -25,26 +36,34 @@
                 </li>
             </ul>
         <?php endforeach; ?>
+
         <a href="index.php">Вернуться к списку категорий товаров</a>
     </div>
     <?php if ($admin[0] == 'admin.php'): ?>
+
         <div class="add-category">
-            <h3>Редактирова категорию <?= $value['name_category'] ?></h3>
+            <h3>Редактировать категорию <?= $value['name_category']; ?></h3>
             <form id="form-category" action="" method="post">
                 <label for="title">Название категории</label>
-                <input type="text" name="title" id="title">
+                <input type="text" name="title" id="title" value="<?= $value['name_category'] ?>" required="required">
                 <label for="short_description">Краткое описание</label>
-                <input type="text" name="short_description" id="short_description">
+                <input type="text" name="short_description" id="short_description" value="<?= $value['cat_short'] ?>">
                 <label for="description">Полное описание</label>
-                <textarea name="description" id="description" cols="30" rows="10"></textarea>
+                <textarea name="description" id="description" cols="30" rows="10"><?= $value['cat_desc'] ?></textarea>
                 <label for="active_category">Активность категории</label>
-                <input type="text" name="active_category" id="active_category">
+                <select name="active_category" id="v">
+                    <option value=""></option>
+                </select>
+                <input type="text" name="active_category" id="active_category" value="<?= $value['cat_act'] ?>"
+                       required="required>
                 <label for="good_id">Идентификатор товара</label>
-                <input type="text" name="good_id" id="good_id">
-                <button type="submit" class="btn-send">Добавить</button>
+                <input type="text" name="good_id" id="good_id" value="<?= $value['cai_good_id'] ?>">
+                <button type="submit" class="btn-send">Изменить</button>
             </form>
         </div>
     <?php endif; ?>
+
+
 
 
 </div>

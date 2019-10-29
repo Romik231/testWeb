@@ -6,8 +6,8 @@ $(document).ready(function () {
             method: 'post',
             dataType: 'html',
             data: $('#form-category').serialize(),
-            success: function (data) {
-                console.log(data);
+            success: function () {
+                alert('Категория успешно добаввлена');
             }
         });
     });
