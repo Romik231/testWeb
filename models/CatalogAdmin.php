@@ -29,11 +29,11 @@ class CatalogAdmin extends Catalog
         $this->active = (int)trim(strip_tags($_POST['active_category']));
         $this->goodId = (int)trim(strip_tags($_POST['good_id']));
 
-        if ($this->title == '' or $this->shortDesc == '' or $this->descr == '' or $this->active == '') {
-            echo 'Параметры не могут быть пустыми';
-            exit;
-
-        }
+//        if ($this->title == '' or $this->shortDesc == '' or $this->descr == '' or $this->active == '') {
+//            echo 'Параметры не могут быть пустыми';
+//            exit;
+//
+//        }
 
         $params = [
             'title' => $this->title,
@@ -55,12 +55,6 @@ class CatalogAdmin extends Catalog
         $this->activeGood = (int)trim(strip_tags($_POST['active']));
         $this->possible = (int)trim(strip_tags($_POST['possible']));
         $this->category = trim(strip_tags($_POST['category_id']));
-var_dump($_POST);
-        //Если хотя обно значение пустое врзвращаем false
-//        if ($this->name == '' or $this->shortDescription == '' or $this->description == ''
-//            or $this->countStock == '' or $this->activeGood == '' or $this->possible == '') {
-//            return false;
-//        }
 
         $params = [
             'name' => $this->name,
@@ -108,7 +102,6 @@ var_dump($_POST);
     public function updateGood()
     {
         $id = $_GET['id_good'];
-        var_dump($_GET);
         $params = $this->getPropertiesGood();
         $sql = 'UPDATE goods SET title=:name, short_description=:shortdesc, description=:description,
                 count_stock=:count, active_good=:activegood, possibility_of_order=:possible, category_id=:category
@@ -116,5 +109,8 @@ var_dump($_POST);
         $this->query($sql, $params);
     }
 
+    public function redirect($url){
+        header(':location: '.$url);
+    }
 
 }

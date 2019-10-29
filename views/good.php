@@ -17,14 +17,13 @@
             <span><?= $value['short_description'] ?></span><br>
             <span><?= $value['description'] ?> </span><br>
             <span>остаток на складе <b><?= $value['count_stock'] ?> шт. <a href=""><?= $a ?></a></b><br>
-                <a href="index.php">Вернуться к списку категорий товаров</a><br>
-                <a href="admin.php?c=page&act=goods&cat_id=<?= $value['id'] ?>">Вернуться к списку товаров</a><br>
+                <a href="<?=$_SERVER['PHP_SELF']?>">Вернуться к списку категорий товаров</a><br>
+                <a href="?c=page&act=goods&cat_id=<?= $value['id'] ?>">Вернуться к списку товаров</a><br>
 
     </span>
         <?php endforeach; ?>
     </div>
 
-<?=print_r($value)?>
     <?php if ($admin[0] == 'admin.php'): ?>
         <div class="add-category">
             <h3>Редактировать товар</h3>
@@ -45,7 +44,7 @@
                 <select name="category_id" id="category_id">
 <!--                    <option value="">--><?//=$value['category_id']?><!--</option>-->
                     <?php foreach ($category as $key => $value): ?>
-                        <option value="<?=$value['category_id']?>"><?=$value['title']?></option>
+                        <option value="<?=$value['id']?>"><?=$value['title']?></option>
                     <?php endforeach; ?>
                 </select>
                 <button type="submit" class="btn-send">Изменить</button>

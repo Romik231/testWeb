@@ -18,9 +18,7 @@ class AdminPage extends AdminController
 
         }
         if(isset($_POST['count'])){
-            print_r($_POST);
-            exit;
-//            $model->addGood();
+            $model->addGood();
         }
         $this->content = $this->Template('category', ['category' => $category]);
     }
@@ -31,10 +29,10 @@ class AdminPage extends AdminController
         $model = new CatalogAdmin();
         $good = $model->getGood();
         $category = $model->getCategory();
-        if(isset($_POST)){
-            $model->getPropertiesGood();
-//            $model->updateGood();
-//            print_r($_POST);
+        if(!empty($_POST)){
+            $model->updateGood();
+            header('location:'.$_SERVER['REQUEST_URI']);
+
         }
         $this->content = $this->Template('good', ['good' => $good, 'category' => $category]);
 
@@ -46,6 +44,7 @@ class AdminPage extends AdminController
         $model = new CatalogAdmin();
         $goods = $model->getGoods();
         if($_POST) {
+            var_dump($_POST);
             $model->updateCategory();
         }
         $this->content = $this->Template('goods', ['goods' => $goods, 'category'=>$category]);

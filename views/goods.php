@@ -37,7 +37,7 @@ $admin = explode('?', $url[2]);
             </ul>
         <?php endforeach; ?>
 
-        <a href="index.php">Вернуться к списку категорий товаров</a>
+        <a href="<?=$_SERVER['PHP_SELF']?>">Вернуться к списку категорий товаров</a>
     </div>
     <?php if ($admin[0] == 'admin.php'): ?>
 
@@ -52,10 +52,11 @@ $admin = explode('?', $url[2]);
                 <textarea name="description" id="description" cols="30" rows="10"><?= $value['cat_desc'] ?></textarea>
                 <label for="active_category">Активность категории</label>
                 <select name="active_category" id="v">
-                    <option value=""></option>
+                    <option value="1">Да</option>
+                    <option value="0">Нет</option>
                 </select>
-                <input type="text" name="active_category" id="active_category" value="<?= $value['cat_act'] ?>"
-                       required="required>
+<!--                <input type="text" name="active_category" id="active_category" value="--><?//= $value['cat_act'] ?><!--"-->
+<!--                       required="required">-->
                 <label for="good_id">Идентификатор товара</label>
                 <input type="text" name="good_id" id="good_id" value="<?= $value['cai_good_id'] ?>">
                 <button type="submit" class="btn-send">Изменить</button>
