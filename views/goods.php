@@ -4,8 +4,11 @@ $admin = explode('?', $url[2]);
 ?>
 <!--Перебор массива для динамической подгрузки названия раздела-->
 <?php foreach ($goods as $key => $value): ?>
-<?php endforeach;
-?>
+<?=var_dump($value)?>
+
+<?php endforeach;?>
+
+<?//=var_dump($count);?>
 <div class="wrap">
     <div>
 
@@ -37,7 +40,8 @@ $admin = explode('?', $url[2]);
             </ul>
         <?php endforeach; ?>
 
-        <a href="<?=$_SERVER['PHP_SELF']?>">Вернуться к списку категорий товаров</a>
+        <a href="<?=$_SERVER['PHP_SELF']?>">Вернуться к списку категорий товаров</a><br>
+        <a href="<?=$_SERVER['REQUEST_URI'].'&page=1'?>">dasdasdsad</a>
     </div>
     <?php if ($admin[0] == 'admin.php'): ?>
 

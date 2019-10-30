@@ -12,9 +12,9 @@ class AdminPage extends AdminController
         $model = new CatalogAdmin();
         $this->title .= 'Админка';
         $category = $model->getCategory();
-
         if(isset($_POST['title'])){
             $model->addCategory();
+            header('location:'.$_SERVER['REQUEST_URI']);
 
         }
         if(isset($_POST['count'])){
@@ -43,11 +43,14 @@ class AdminPage extends AdminController
         $this->title = 'Товары';
         $model = new CatalogAdmin();
         $goods = $model->getGoods();
-        if($_POST) {
-            var_dump($_POST);
+
+//        var_dump($count);
+        if(!empty($_POST)) {
+//            var_dump($_POST);
             $model->updateCategory();
+
         }
-        $this->content = $this->Template('goods', ['goods' => $goods, 'category'=>$category]);
+        $this->content = $this->Template('goods', ['goods' => $goods,]);
 
     }
 }

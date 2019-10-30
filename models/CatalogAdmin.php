@@ -109,8 +109,9 @@ class CatalogAdmin extends Catalog
         $this->query($sql, $params);
     }
 
-    public function redirect($url){
-        header(':location: '.$url);
+    public function redirect($url)
+    {
+        header(':location: ' . $url);
     }
 
 }
